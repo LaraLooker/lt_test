@@ -52,7 +52,6 @@
 
 - explore: products
 
-- explore: schema_migrations
 
 - explore: t1
   joins:
@@ -77,15 +76,14 @@
       relationship: many_to_one
 
 
-- explore: user_data
+- explore: Customer_Purchase_History
   joins:
     - join: users
       type: left_outer 
-      sql_on: ${user_data.user_id} = ${users.id}
+      sql_on: ${Customer_Purchase_History.user_id} = ${Customer_Purchase_History.id}
       relationship: many_to_one
 
 
 - explore: users
 
-- explore: users_nn
 

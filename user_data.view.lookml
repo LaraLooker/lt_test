@@ -1,4 +1,5 @@
-- view: user_data
+- view: Customer_Purchase_History
+  view_label: User History
   sql_table_name: demo_db.user_data
   fields:
 

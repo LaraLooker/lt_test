@@ -2,6 +2,9 @@
   sql_table_name: demo_db.order_items
   fields:
 
+
+######## Dimensions ######## 
+
   - dimension: id
     primary_key: true
     type: number
@@ -26,7 +29,20 @@
     type: number
     sql: ${TABLE}.sale_price
 
+
+######## Measures ######## 
+
   - measure: count
     type: count
     drill_fields: [id, orders.id, inventory_items.id]
-
+    
+  - measure: total_sale_price
+    type: sum
+    sql: ${sale_price}
+    
+  - measure: average_sale_price
+    type: average
+    sql: ${sale_price}
+    
+ 
+  

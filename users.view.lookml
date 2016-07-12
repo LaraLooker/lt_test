@@ -1,4 +1,5 @@
 - view: users
+  view_label: Customer Information
   sql_table_name: demo_db.users
   fields:
 
@@ -6,6 +7,29 @@
     primary_key: true
     type: number
     sql: ${TABLE}.id
+    
+  - dimension: first_name
+    type: string
+    sql: ${TABLE}.first_name
+    hidden: true
+
+  - dimension: last_name
+    type: string
+    sql: ${TABLE}.last_name
+    hidden: true
+    
+  - dimension: full_name
+    label: Name
+    type: string
+    sql: ${first_name} || ' ' || ${last_name}
+  
+  - dimension: email
+    type: string
+    sql: ${TABLE}.email
+    
+  - dimension: gender
+    type: string
+    sql: ${TABLE}.gender
 
   - dimension: age
     type: number
@@ -23,22 +47,6 @@
     type: time
     timeframes: [time, date, week, month]
     sql: ${TABLE}.created_at
-
-  - dimension: email
-    type: string
-    sql: ${TABLE}.email
-
-  - dimension: first_name
-    type: string
-    sql: ${TABLE}.first_name
-
-  - dimension: gender
-    type: string
-    sql: ${TABLE}.gender
-
-  - dimension: last_name
-    type: string
-    sql: ${TABLE}.last_name
 
   - dimension: state
     type: string
