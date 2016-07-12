@@ -28,6 +28,11 @@
   - dimension: sale_price
     type: number
     sql: ${TABLE}.sale_price
+    
+  - measure: gross_margin
+    type: number
+    sql: ${sale_price} - ${inventory_items.cost}
+    value_format_name: usd
 
 
 ######## Measures ######## 
@@ -43,6 +48,7 @@
   - measure: average_sale_price
     type: average
     sql: ${sale_price}
+  
     
  
   
