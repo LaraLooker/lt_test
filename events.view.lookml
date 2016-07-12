@@ -2,6 +2,8 @@
   sql_table_name: demo_db.events
   fields:
 
+######## Dimensions ######## 
+
   - dimension: id
     primary_key: true
     type: number
@@ -24,6 +26,8 @@
   - dimension: value
     type: string
     sql: ${TABLE}.value
+    
+######## Measures ######## 
 
   - measure: count
     type: count

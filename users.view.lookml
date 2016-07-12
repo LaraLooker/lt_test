@@ -3,6 +3,8 @@
   sql_table_name: demo_db.users
   fields:
 
+######## Dimensions ######## 
+
   - dimension: id
     primary_key: true
     type: number
@@ -55,6 +57,9 @@
   - dimension: zip
     type: number
     sql: ${TABLE}.zip
+   
+   
+######## Measures ######## 
 
   - measure: count
     type: count

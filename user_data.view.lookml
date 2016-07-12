@@ -3,6 +3,8 @@
   sql_table_name: demo_db.user_data
   fields:
 
+######## Dimensions ######## 
+
   - dimension: id
     primary_key: true
     type: number
@@ -20,6 +22,8 @@
     type: number
     # hidden: true
     sql: ${TABLE}.user_id
+
+######## Measures ######## 
 
   - measure: count
     type: count

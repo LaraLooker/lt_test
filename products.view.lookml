@@ -1,6 +1,8 @@
 - view: products
   sql_table_name: demo_db.products
   fields:
+  
+######## Dimensions ######## 
 
   - dimension: id
     primary_key: true
@@ -34,6 +36,8 @@
   - dimension: sku
     type: string
     sql: ${TABLE}.sku
+
+######## Measures ######## 
 
   - measure: count
     type: count

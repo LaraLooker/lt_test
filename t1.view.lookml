@@ -2,6 +2,8 @@
   sql_table_name: demo_db.T1
   fields:
 
+######## Dimensions ######## 
+
   - dimension: id
     primary_key: true
     type: number
@@ -25,6 +27,8 @@
   - dimension: sale_price
     type: number
     sql: ${TABLE}.sale_price
+
+######## Measures ######## 
 
   - measure: count
     type: count
