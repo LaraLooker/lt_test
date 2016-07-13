@@ -33,11 +33,11 @@
     type: number
     sql: ${TABLE}.sale_price
     
-  - measure: gross_margin
+  - dimension: gross_margin
     type: number
     sql: ${sale_price} - ${inventory_items.cost}
     value_format_name: usd
-
+    
 
 ######## Measures ######## 
 
@@ -48,6 +48,7 @@
   - measure: total_sale_price
     type: sum
     sql: ${sale_price}
+    drill_fields: [id, sale_price]
     
   - measure: average_sale_price
     type: average
@@ -58,7 +59,16 @@
     type: average
     sql: ${days_returned}
     drill_fields: [id, orders.created, returned, days_returned, sale_price]
-  
+    
+  - measure: returned_order_items
+    type: count
+    filters: 
+      returned_time: '-NULL'      # filter for non-NULL values
+    
+  - measure: percent_order_items_returned
+    type: number
+    value_format_name: percent_2
+    sql: 1.0 * ${returned_order_items}/NULLIF(${count},0)
     
  
   

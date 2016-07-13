@@ -37,6 +37,11 @@
     type: count
     filters:
       status: 'cancelled'
+      
+  - measure: percent_orders_cancelled
+    type: number
+    value_format_name: percent_2
+    sql: 1.0 * ${cancelled_orders}/NULLIF(${count},0)
   
   - measure: pending_orders
     type: count
