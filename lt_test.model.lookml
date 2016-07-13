@@ -53,29 +53,6 @@
 - explore: products
 
 
-- explore: t1
-  joins:
-    - join: orders
-      type: left_outer 
-      sql_on: ${t1.order_id} = ${orders.id}
-      relationship: many_to_one
-
-    - join: inventory_items
-      type: left_outer 
-      sql_on: ${t1.inventory_item_id} = ${inventory_items.id}
-      relationship: many_to_one
-
-    - join: users
-      type: left_outer 
-      sql_on: ${orders.user_id} = ${users.id}
-      relationship: many_to_one
-
-    - join: products
-      type: left_outer 
-      sql_on: ${inventory_items.product_id} = ${products.id}
-      relationship: many_to_one
-
-
 - explore: Customer_Purchase_History
   joins:
     - join: users

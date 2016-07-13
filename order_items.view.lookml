@@ -63,12 +63,19 @@
   - measure: returned_order_items
     type: count
     filters: 
-      returned_time: '-NULL'      # filter for non-NULL values
+      returned_time: '-NULL'     
     
   - measure: percent_order_items_returned
     type: number
     value_format_name: percent_2
     sql: 1.0 * ${returned_order_items}/NULLIF(${count},0)
+    html: |
+      {{ rendered_value }} || {{ count._rendered_value }} total orders
+  
+  - measure: average_percent_returned
+    type: average
+    value_format_name: percent_2
+    sql: ${percent_order_items_returned}
     
  
   

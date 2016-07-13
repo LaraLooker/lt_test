@@ -42,4 +42,10 @@
   - measure: count
     type: count
     drill_fields: [id, item_name, inventory_items.count]
+  
+  - measure: number_of_brands
+    type: count_distinct 
+    sql: ${brand}
+    drill_fields: [id, brand]
+
 

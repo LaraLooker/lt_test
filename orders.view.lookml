@@ -37,16 +37,19 @@
     type: count
     filters:
       status: 'cancelled'
+    drill_fields: detail*
       
   - measure: percent_orders_cancelled
     type: number
     value_format_name: percent_2
     sql: 1.0 * ${cancelled_orders}/NULLIF(${count},0)
+    drill_fields: detail*
   
   - measure: pending_orders
     type: count
     filters:
       status: 'pending'
+    drill_fields: detail*
 
 
   # ----- Sets of fields for drilling ------
