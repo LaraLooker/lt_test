@@ -42,6 +42,7 @@
   - measure: average_days_in_inventory
     type: average
     sql: ${days_in_inventory}
+    drill_fields: [id, cost, days in inventory]
     
     
 

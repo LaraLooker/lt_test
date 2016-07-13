@@ -11,7 +11,7 @@
 
   - dimension_group: created
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, raw]
     sql: ${TABLE}.created_at
 
   - dimension: status
@@ -22,12 +22,26 @@
     type: number
     # hidden: true
     sql: ${TABLE}.user_id
-
+    
+  - dimension: time_pending
+    type: number
+    sql: CASE WHEN ${status} = 'pending' THEN TIMESTAMPDIFF(day, ${created_raw}, NOW())*1.0 ELSE 0 END
+    
 ######## Measures ######## 
 
   - measure: count
     type: count
     drill_fields: detail*
+    
+  - measure: cancelled_orders
+    type: count
+    filters:
+      status: 'cancelled'
+  
+  - measure: pending_orders
+    type: count
+    filters:
+      status: 'pending'
 
 
   # ----- Sets of fields for drilling ------
