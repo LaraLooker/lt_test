@@ -38,7 +38,6 @@
     sql: ${sale_price} - ${inventory_items.cost}
     value_format_name: usd
     
-
 ######## Measures ######## 
 
   - measure: count
@@ -60,6 +59,14 @@
     value_format_name: usd
     sql: 1.0 * ${total_sale_price}/NULLIF(${users.count}, 0)
     drill_fields: detail*
+
+  - measure: total_gross_margin
+    type: sum
+    sql: ${gross_margin}
+    
+  - measure: percent_of_total_gross_margin
+    type: percent_of_total
+    sql: ${total_gross_margin}
 
   - measure: average_days_returned
     type: average

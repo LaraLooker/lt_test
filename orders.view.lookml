@@ -33,6 +33,10 @@
   - measure: count
     type: count
     drill_fields: detail*
+  
+  - measure: count_growth
+    type: percent_of_previous
+    sql: ${count}
     
   - measure: cancelled_orders
     type: count

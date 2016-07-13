@@ -25,13 +25,22 @@
 
   - dimension_group: sold
     type: time
-    timeframes: [time, date, week, month]
+    timeframes: [time, date, week, month, raw]
     sql: ${TABLE}.sold_at
+
+  - dimension: is_sold
+    type: yesno
+    sql: ${sold_raw} is not null
     
   - dimension: days_in_inventory
     type: number
     sql: DATEDIFF(${sold_date}, ${created_date})
-    
+
+  - dimension: days_in_inventory_tier
+    type: tier
+    sql: ${days_in_inventory}
+    style: integer
+    tiers: [0,5,10,20,40,80,160,360]    
     
 ######## Measures ######## 
 
