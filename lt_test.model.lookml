@@ -51,6 +51,7 @@
 
 
 - explore: products
+  hidden: true
 
 
 - explore: Customer_Purchase_History
@@ -62,5 +63,6 @@
 
 
 - explore: users
+  hidden: true
 
 
