@@ -36,6 +36,12 @@
   - dimension: age
     type: number
     sql: ${TABLE}.age
+    
+  - dimension: age_tier
+    type: tier                                   
+    sql: ${age}                                 
+    tiers: [0,10,20,30,40,50,60,70,80]            
+    style: integer
 
   - dimension: city
     type: string

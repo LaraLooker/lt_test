@@ -54,6 +54,12 @@
     type: average
     sql: ${sale_price}
     drill_fields: [id, sale_price]
+  
+  - measure: average_spend_per_customer
+    type: number
+    value_format_name: usd
+    sql: 1.0 * ${total_sale_price}/NULLIF(${users.count}, 0)
+    drill_fields: detail*
 
   - measure: average_days_returned
     type: average
@@ -62,6 +68,7 @@
     
   - measure: returned_order_items
     type: count
+    hidden: true
     filters: 
       returned_time: '-NULL'     
     
@@ -76,6 +83,15 @@
     type: average
     value_format_name: percent_2
     sql: ${percent_order_items_returned}
+    
+  # ----- Sets of fields for drilling ------
+  sets:
+    detail:
+    - id
+    - events.count
+    - orders.count
+    - user_data.count
+    - returned_order_items
     
  
   

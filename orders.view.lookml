@@ -26,6 +26,7 @@
   - dimension: time_pending
     type: number
     sql: CASE WHEN ${status} = 'pending' THEN TIMESTAMPDIFF(day, ${created_raw}, NOW())*1.0 ELSE 0 END
+  
     
 ######## Measures ######## 
 
