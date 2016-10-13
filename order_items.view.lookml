@@ -43,11 +43,26 @@
   - measure: count
     type: count
     drill_fields: [id, orders.id, inventory_items.id, sale price]
-    
+
   - measure: total_sale_price
     type: sum
     sql: ${sale_price}
     drill_fields: [id, sale_price]
+
+  - measure: smallest_order_items
+    type: min
+    sql: ${sale_price}
+    value_format_name: usd
+  
+  - measure: largest_order_items
+    type: max
+    sql: ${sale_price}
+    value_format_name: usd
+  
+  - measure: cumulative_total_revenue
+    type: running_total
+    sql: ${total_sale_price}
+    value_format_name: usd
     
   - measure: average_sale_price
     type: average
@@ -72,12 +87,19 @@
     type: average
     sql: ${days_returned}
     drill_fields: [id, orders.created, returned, days_returned, sale_price]
-    
+    html: |
+          <p style="color: black; font-size:100%; text-align:center">{{ rendered_value }}</p>
+
   - measure: returned_order_items
     type: count
     hidden: true
     filters: 
-      returned_time: '-NULL'     
+      returned_time: '-NULL' 
+
+  - dimension_group: date
+    type: time
+    timeframes: [raw, date, week, month]
+    sql: NOW()
     
   - measure: percent_order_items_returned
     type: number

@@ -13,17 +13,47 @@
   - dimension: first_name
     type: string
     sql: ${TABLE}.first_name
-    hidden: true
-
+    hidden: false
+    
   - dimension: last_name
     type: string
     sql: ${TABLE}.last_name
     hidden: true
-    
+
   - dimension: full_name
+    type: string
+    sql: CONCAT(first_name,' ',last_name)
+    hidden: true
+
+  - dimension: access
+    type: number
+    sql: |
+        CASE WHEN {{ _access_filters["users.access"] }} = '1' THEN '1'
+        WHEN {{ _access_filters["users.access"] }} = '2' THEN '2'
+        ELSE '3'
+        END
+  
+  - dimension: name
     label: Name
     type: string
-    sql: ${first_name} || ' ' || ${last_name}
+    sql: |
+      CASE WHEN ${access} = '1' THEN ${full_name}
+      WHEN ${access} = '2' THEN MD5(${full_name})
+      ELSE 'You do not have access to view this content'
+      END
+ 
+#   - dimension: name
+#     label: Name
+#     type: string
+#     sql: |
+#       CASE WHEN {{ _access_filters["users.name"] }} = '1' THEN ${full_name}
+#       WHEN {{ _access_filters["users.name"] }} = '2' THEN MD5(${full_name})
+#       ELSE 'You do not have access to view this content'
+#       END
+      
+  - measure: name_list
+    type: list
+    list_field: name
   
   - dimension: email
     type: string

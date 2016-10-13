@@ -20,6 +20,7 @@
 
 
 - explore: order_items
+  access_filter_fields: [users.access]
   joins:
     - join: orders
       type: left_outer 
@@ -41,14 +42,24 @@
       sql_on: ${inventory_items.product_id} = ${products.id}
       relationship: many_to_one
 
+# 
+# - explore: order_items_with_extensions
+#   access_filter_fields: [users_with_extensions.name]
+#   label: order_items_with_extensions
+#   extends: order_items
+#   view: order_items
+# #   from: order_items
+#   joins:
+#     - join: users_with_extensions
+#       from: users_with_extensions
 
+    
 - explore: orders
   joins:
     - join: users
       type: left_outer 
       sql_on: ${orders.user_id} = ${users.id}
       relationship: many_to_one
-
 
 - explore: products
 
