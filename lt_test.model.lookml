@@ -74,5 +74,8 @@
 
 - explore: users
   hidden: true
+  
+- explore: session_facts
 
+- explore: sessions
 

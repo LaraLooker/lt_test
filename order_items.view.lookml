@@ -108,10 +108,10 @@
     html: |
       {{ rendered_value }} || {{ count._rendered_value }} total orders
   
-  - measure: average_percent_returned
-    type: average
-    value_format_name: percent_2
-    sql: ${percent_order_items_returned}
+#   - measure: average_percent_returned
+#     type: average
+#     value_format_name: percent_2
+#     sql: ${percent_order_items_returned}
     
   # ----- Sets of fields for drilling ------
   sets:
